@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hỏi bất cứ điều gì về tài liệu PDF của bạn. Nhận câu trả lời kèm bằng chứng." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Chat với tài liệu</title>
+    <script>
+      // Áp dụng giao diện sáng/tối trước khi render để tránh nháy màu
+      (function () {
+        try {
+          var prefs = JSON.parse(localStorage.getItem("cwd.preferences") || "{}").state || {};
+          var theme = prefs.theme || "system";
+          var dark = theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.classList.toggle("reduce-motion", prefs.reduceMotion === true);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
